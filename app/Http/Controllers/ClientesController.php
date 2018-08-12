@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ClientesController extends Controller {
 
     public function index(){
-        $clientes = Cliente::all();
+        $clientes = Cliente::orderBy('nome', 'ASC')->get();
         return $clientes;
     }
 
