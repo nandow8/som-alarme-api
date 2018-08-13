@@ -29,4 +29,14 @@ class ProdutosController extends Controller {
         return $produto;
     }
 
+    public function update($id, Request $request){  
+        // store
+        $produto = Produto::find($id);
+        $produto->nome = $request->nome;
+        $produto->preco = $request->preco;
+        $produto->marca = $request->marca;
+        $produto->quantidade = $request->quantidade;
+        $produto->save(); 
+        
+    }
 }

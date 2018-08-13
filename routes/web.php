@@ -33,13 +33,15 @@ $router->group(['prefix' => 'api'], function() use($router){
 
 $router->get('clientes', 'ClientesController@index');
 $router->post('clientes', 'ClientesController@store');
-$router->get('clientes/{id}', 'ClientesController@details');
+$router->put('clientes/{id}', 'ClientesController@update');
+$router->get('clientes/detail/{id}', 'ClientesController@details');
 
 
 
 $router->get('produtos', 'ProdutosController@index');
 $router->post('produtos', 'ProdutosController@store');
 $router->get('produtos/{id}', 'ProdutosController@details');
+$router->put('produtos/{id}', 'ProdutosController@update');
 
 
 $router->get('orcamentos', 'OrcamentosController@index');

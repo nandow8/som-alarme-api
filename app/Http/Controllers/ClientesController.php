@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ClientesController extends Controller {
 
     public function index(){
-        $clientes = Cliente::orderBy('nome', 'ASC')->get();
+        $clientes = Cliente::all();
         return $clientes;
     }
 
@@ -26,6 +26,15 @@ class ClientesController extends Controller {
         $cliente = Cliente::find($id);
         $clienteArray[] = $cliente; //ionic só permite arrays
         return $clienteArray;
+    }
+
+    public function update($id, Request $request){
+        $cliente = Cliente::find($id);
+
+        $cliente->nome = $request->nome;
+        $cliente->telefone = $request->telefone;
+
+        $cliente->save();
     }
 
 }
