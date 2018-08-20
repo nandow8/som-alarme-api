@@ -32,7 +32,7 @@ $router->group(['prefix' => 'api'], function() use($router){
 });
 
 $router->get('clientes', 'ClientesController@index');
-$router->post('clientes', 'ClientesController@store');
+$router->post('clientes', 'ClientesController@storeImage');
 $router->put('clientes/{id}', 'ClientesController@update');
 $router->get('clientes/detail/{id}', 'ClientesController@details');
 
