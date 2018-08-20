@@ -2,39 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use Laravel\Lumen\Routing\Controller;
+use App\Http\Controllers\ApiGenericCrudTrait;
 use App\Models\Cliente;
-
-use Illuminate\Http\Request;
 
 class ClientesController extends Controller {
 
-    public function index(){
-        $clientes = Cliente::all();
-        return $clientes;
+    use ApiGenericCrudTrait;
+
+    protected $model;
+    protected $rules = [
+        'nome' => 'required|min:3',
+        'telefone' => 'required',
+    ];
+    
+    protected $messages = [
+        'required' => ':attribute é obrigatório',
+        'min' => ':attribute precisa de pelo menos :min caracteres',
+
+    ];
+
+    public function __construct(Cliente $model){
+        $this->model = $model;
     }
 
-    public function store(Request $request){
-        $cliente = new Cliente;
-
-        $cliente->nome = $request->nome;
-        $cliente->telefone = $request->telefone;
-
-        $cliente->save();
-    }
-
+   
     public function details($id){
         $cliente = Cliente::find($id);
         $clienteArray[] = $cliente; //ionic só permite arrays
         return $clienteArray;
     }
-
-    public function update($id, Request $request){
-        $cliente = Cliente::find($id);
-
-        $cliente->nome = $request->nome;
-        $cliente->telefone = $request->telefone;
-
-        $cliente->save();
-    }
-
+ 
 }
